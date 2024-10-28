@@ -1,7 +1,14 @@
-
+/*
+SevSeg.cpp
+Author: Christopher Eldridge
+christopher.m.eldridge@gmail.com
+date:10/26/2024
+Purpose: this library is is meant to write numbers 0-9 to a single 7 segment display
+*/
 #include "Arduino.h"
 #include "SevSeg.h"
 
+//creates all the pins. matches the segments on a 7 segment display
 SevSeg::SevSeg(int pinA,int pinB,int pinC,int pinD,int pinE,int pinF,int pinG, int pinDP)
 {
     _pinA = pinA;
@@ -12,8 +19,7 @@ SevSeg::SevSeg(int pinA,int pinB,int pinC,int pinD,int pinE,int pinF,int pinG, i
     _pinF = pinF;
     _pinG = pinG;
     _pinDP = pinDP;
-};
-
+};//sets all pins to output
 void SevSeg::Begin()
 {
     pinMode(_pinA,OUTPUT);
@@ -26,6 +32,7 @@ void SevSeg::Begin()
     pinMode(_pinDP,OUTPUT);
 };
 
+//write consumes a int 0-9 and drive the appropriate pins high
 void SevSeg::Write(int num)
 {
     switch(num)
@@ -122,7 +129,7 @@ void SevSeg::Write(int num)
     };
 
 };
-
+// clear setts all pins low
 void SevSeg::Clear()
 {
     digitalWrite(_pinA, LOW);
@@ -135,7 +142,7 @@ void SevSeg::Clear()
     digitalWrite(_pinDP,LOW);
 
 };
-
+//makes the decimal point pin high
 void SevSeg::Point()
 {
   digitalWrite(_pinDP,HIGH);
